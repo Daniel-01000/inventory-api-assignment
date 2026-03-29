@@ -10,7 +10,7 @@ pipeline {
         MONGO_URI = "mongodb+srv://sofoladaniel1_db_user:xcmeXz43R7LqviWW@cluster0.sygoaqi.mongodb.net/?appName=Cluster0"
         DB_NAME = "inventory_db"
         COLLECTION_NAME = "products"
-        NEWMAN_CMD = "/usr/local/bin/newman"
+        NEWMAN_CMD = "/Users/ayomidesofola/.nvm/versions/node/v20.19.5/bin/newman"
     }
 
     stages {
