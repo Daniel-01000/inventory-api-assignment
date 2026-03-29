@@ -171,7 +171,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\"ProductID\":5001,\"Name\":\"Postman Test Product\",\"UnitPrice\":49.99,\"StockQuantity\":5,\"Description\":\"Created from Postman test\"}",
+          "raw": "{\"ProductID\":9001,\"Name\":\"Postman Test Product\",\"UnitPrice\":49.99,\"StockQuantity\":5,\"Description\":\"Created from Postman test\"}",
           "options": {
             "raw": {
               "language": "json"
@@ -221,7 +221,7 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://127.0.0.1:8000/deleteOne?product_id=1012",
+          "raw": "http://127.0.0.1:8000/deleteOne?product_id=9001",
           "protocol": "http",
           "host": [
             "127",
@@ -236,7 +236,7 @@
           "query": [
             {
               "key": "product_id",
-              "value": "1012"
+              "value": "9001"
             }
           ]
         }
