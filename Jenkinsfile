@@ -6,6 +6,11 @@ pipeline {
         CONTAINER_NAME = 'inventory-api-jenkins'
         ZIP_NAME = "complete-${new Date().format('yyyy-MM-dd-HH-mm-ss')}.zip"
         DOCKER_CMD = '/usr/local/bin/docker'
+        PATH = "/Applications/Docker.app/Contents/Resources/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+        MONGO_URI = "mongodb+srv://sofoladaniel1_db_user:xcmeXz43R7LqviWW@cluster0.sygoaqi.mongodb.net/?appName=Cluster0"
+        DB_NAME = "inventory_db"
+        COLLECTION_NAME = "products"
+        NEWMAN_CMD = "/usr/local/bin/newman"
     }
 
     stages {
@@ -41,6 +46,8 @@ EOF
         stage('Build Docker Image') {
             steps {
                 sh '''
+                echo $PATH
+                which docker-credential-desktop || true
                 $DOCKER_CMD build -t $IMAGE_NAME .
                 '''
             }
@@ -53,8 +60,8 @@ EOF
                 $DOCKER_CMD run -d \
                   -p 8000:8000 \
                   -e MONGO_URI="$MONGO_URI" \
-                  -e DB_NAME="inventory_db" \
-                  -e COLLECTION_NAME="products" \
+                  -e DB_NAME="$DB_NAME" \
+                  -e COLLECTION_NAME="$COLLECTION_NAME" \
                   --name $CONTAINER_NAME \
                   $IMAGE_NAME
                 '''
@@ -73,7 +80,7 @@ EOF
         stage('Run Newman Tests') {
             steps {
                 sh '''
-                newman run inventory_api_tests.postman_collection.json
+                $NEWMAN_CMD run inventory_api_tests.postman_collection.json
                 '''
             }
         }
