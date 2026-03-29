@@ -48,7 +48,7 @@ EOF
                 sh '''
                 echo $PATH
                 which docker-credential-desktop || true
-                $DOCKER_CMD build -t $IMAGE_NAME .
+                $DOCKER_CMD build --no-cache -t $IMAGE_NAME .
                 '''
             }
         }

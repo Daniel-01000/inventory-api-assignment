@@ -27,10 +27,7 @@ def get_single_product(product_id: int = Query(..., description="Product ID")):
 
 @app.post("/addNew")
 def add_new(product: Product):
-    existing_product = products_collection.find_one({"ProductID": product.ProductID})
-    if existing_product:
-        raise HTTPException(status_code=400, detail="ProductID already exists")
-
+    products_collection.delete_one({"ProductID": product.ProductID})
     products_collection.insert_one(product.model_dump())
     return {"message": "Product added successfully"}
 
